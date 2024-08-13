@@ -80,6 +80,7 @@ contract NativeTokenLimitModule is BaseModule, IExecutionHook, IValidationHook {
         override
         returns (bytes memory)
     {
+        require(msg.sender == address(this), "NativeTokenLimitModule: Only callable by self");
         return _checkAndDecrementLimit(entityId, data);
     }
 
